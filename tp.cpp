@@ -81,6 +81,9 @@ struct TriangleVArray {
         // glGenBuffers(...);
         // glBindBuffer(...);
         // glBufferData(...);
+        glGenBuffers(1, &vertexbuffer);
+        glBindBuffer( GL_ARRAY_BUFFER, vertexbuffer);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data,   GL_STATIC_DRAW);
 
         // Creer un deuxieme buffer contenant les couleurs
         // a mettre dans le layout 1
@@ -88,10 +91,15 @@ struct TriangleVArray {
         // glGenBuffers(...);
         // glBindBuffer(...);
         // glBufferData(...);
+        glGenBuffers(1, &colorbuffer);
+        glBindBuffer( GL_ARRAY_BUFFER, colorbuffer);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data,   GL_STATIC_DRAW);
     }
 
     void clearBuffers(){
         //Liberer la memoire, utiliser glDeleteBuffers
+        glDeleteBuffers(1, &vertexbuffer);
+        glDeleteBuffers(1, &colorbuffer);
 
     }
 
@@ -99,16 +107,23 @@ struct TriangleVArray {
         // 1rst attribute buffer : vertices
         //A faire
         //Utiliser glVertexAttribPointer
+        glVertexAttribPointer(0,3,GL_FLOAT,false, sizeof(Vec3), 0);
+        glEnableVertexAttribArray(0);
 
         //Ajouter un attribut dans un color buffer à envoyé au GPU
         //Utiliser glVertexAttribPointer
         // 2nd attribute buffer : normals
+        glVertexAttribPointer(1,3,GL_FLOAT,false, sizeof(Vec3), 0);
+        glEnableVertexAttribArray(1);
 
 
         // Draw the triangle !
         // Utiliser glDrawArrays
+        glDrawArrays(GL_TRIANGLES, 0, 3);
 
         //Pensez à desactive les AttributArray
+        glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
     }
 };
 
@@ -141,7 +156,7 @@ struct Mesh {
 
     void initBuffers(){
 
-
+        //initTriangleMesh();
 
         // Creer un premier buffer contenant les positions
         // a mettre dans le layout 0
@@ -158,6 +173,7 @@ struct Mesh {
         // glBufferData(...);
         // Piste : utiliser sizeof(Vec3)
 
+    /*
         //Remplir indices avec la liste des indices des triangles concatenes
         std::vector<unsigned int> indices;
 
@@ -166,6 +182,7 @@ struct Mesh {
         // glGenBuffers(...);
         // glBindBuffer(...);
         // glBufferData(...);
+    */
 
 
     }

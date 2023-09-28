@@ -14,7 +14,6 @@ layout(location = 0) in vec3 vertexPosition_modelspace;
 //------
 
 void main(){
-
     //Mettre à jour ce code pour appliquer la translation et la mise à l'échelle
     gl_Position =  vec4(vertexPosition_modelspace,1);
 
