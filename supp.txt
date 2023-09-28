@@ -1,0 +1,9 @@
+Exo supp
+-transmettre une variable uniform "time" aux shaders.
+-Deplacer les vertex de haut en bas en fonction de "time"
+-Utiliser la position la position (x,y) des fragments pour modifier leur couleur EX: 
+    -dessiner un disque noir
+    -effets d'ondulation avec des "cos"
+    -Utilisation de bruits(voir...)
+- Bindez les touches "n" et "m" pour modifier une variable
+uniform "Rotation". Faites tourner vos vertices dans le vertexshader

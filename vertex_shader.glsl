@@ -11,6 +11,7 @@
 // Input vertex data, different for all executions of this shader.
 layout(location = 0) in vec3 vertexPosition_modelspace;
 layout(location = 1) in vec3 colorValues_modelspace;
+layout(location = 2) in vec3 triangleIndex_modelspace;
 // A faire : ajouter un attribut de sommet color, contenant les couleurs pour chaque sommet à ( location = 1 )
 //------
 uniform float scale=1;
