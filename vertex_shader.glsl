@@ -12,10 +12,11 @@
 layout(location = 0) in vec3 vertexPosition_modelspace;
 // A faire : ajouter un attribut de sommet color, contenant les couleurs pour chaque sommet à ( location = 1 )
 //------
+uniform float scale=1;
 
 void main(){
     //Mettre à jour ce code pour appliquer la translation et la mise à l'échelle
-    gl_Position =  vec4(vertexPosition_modelspace,1);
+    gl_Position =  vec4(vertexPosition_modelspace,scale);
 
     //Assigner la normale à la variable interpolée color
     //ajouter ici

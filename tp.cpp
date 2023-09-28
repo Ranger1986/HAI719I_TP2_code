@@ -33,7 +33,8 @@
 
 GLuint programID;
 
-float scale;
+float scale = 1;
+GLfloat scaleLocation;
 Vec3 translate;
 
 struct Triangle {
@@ -487,11 +488,13 @@ void key (unsigned char keyPressed, int x, int y) {
 
 
     case '+': //Press + key to increase scale
-        //Completer augmenter la valeur de la variable scale e.g. +0.005
+        scale+=0.005;
+        glUniform1f(scaleLocation,scale);
         break;
 
     case '-': //Press - key to decrease scale
-        //Completer
+        scale-=0.005;
+        glUniform1f(scaleLocation,scale);
         break;
 
     case 'd': //Press d key to translate on x positive
@@ -600,6 +603,8 @@ int main (int argc, char ** argv) {
 
     // Create and compile our GLSL program from the shaders
     programID = load_shaders( "vertex_shader.glsl", "fragment_shader.glsl" );
+
+    scaleLocation = glGetUniformLocation(programID, "scale");
 
     //Initialisation des buffers : fonction à completer
     first_triangle.initBuffers();
