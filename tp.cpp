@@ -35,7 +35,8 @@ GLuint programID;
 
 float scale = 1;
 GLfloat scaleLocation;
-Vec3 translate;
+Vec3 translate = Vec3(0,0,0);
+GLfloat translateLocation;
 
 struct Triangle {
     inline Triangle () {
@@ -488,29 +489,37 @@ void key (unsigned char keyPressed, int x, int y) {
 
 
     case '+': //Press + key to increase scale
-        scale+=0.005;
+        scale-=0.005;
         glUniform1f(scaleLocation,scale);
         break;
 
     case '-': //Press - key to decrease scale
-        scale-=0.005;
+        scale+=0.005;
         glUniform1f(scaleLocation,scale);
         break;
 
     case 'd': //Press d key to translate on x positive
         //Completer : mettre à jour le x du Vec3 translate
+        translate[0]+=0.005;
+        glUniform3fv(translateLocation,1,&translate[0]);
         break;
 
     case 'q': //Press q key to translate on x negative
         //Completer : mettre à jour le y du Vec3 translate
+        translate[0]-=0.005;
+        glUniform3fv(translateLocation,1,&translate[0]);
         break;
 
     case 'z': //Press z key to translate on y positive
         //Completer : mettre à jour le y du Vec3 translate
+        translate[1]+=0.005;
+        glUniform3fv(translateLocation,1,&translate[0]);
         break;
 
     case 's': //Press s key to translate on y negative
         //Completer : mettre à jour le y du Vec3 translate
+        translate[1]-=0.005;
+        glUniform3fv(translateLocation,1,&translate[0]);
         break;
 
     case '1': //Toggle loaded mesh display
@@ -605,6 +614,7 @@ int main (int argc, char ** argv) {
     programID = load_shaders( "vertex_shader.glsl", "fragment_shader.glsl" );
 
     scaleLocation = glGetUniformLocation(programID, "scale");
+    translateLocation = glGetUniformLocation(programID, "translate");
 
     //Initialisation des buffers : fonction à completer
     first_triangle.initBuffers();
